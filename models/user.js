@@ -33,6 +33,8 @@ const User = db.define("user", {
   is_admin: {
     type: DataTypes.BOOLEAN,
     allowNull: true
+    //change allowNull to be false
+    //dafualtValue: false
   },
 
 });

@@ -4,6 +4,11 @@ const validateSession = require('../middleware/validate-session');
 
 router.post('/create', validateSession, (req,res)=> {
     console.log(req.user.id)
+    if(req.user.is_admin===true){
+        query = {where:{id: req.params.id, userId: req.user.id}};
+    }else {
+        query = {where:{id: req.params.id, userId: req.user.id}};
+    }
     const countryEntry= {
         countryName: req.body.country.countryName, 
         population: req.body.country.population, 
@@ -19,8 +24,8 @@ router.post('/create', validateSession, (req,res)=> {
 });
 
 router.get("/getAll", validateSession, (req, res) => {
-    const query = {where:{userId:req.user.id}};
-    Country.findAll(query)
+    
+    Country.findAll()
     .then((country) => res.status(200).json(country))
     .catch((err)=> res.status(500)({error:err}));
 });

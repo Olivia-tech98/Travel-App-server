@@ -7,7 +7,7 @@ const Country = db.define("country", {
         allolwNull: false
     },
     population: {
-        type: DataTypes.INTEGER(2000),
+        type: DataTypes.INTEGER,
         allowNull: false
     },
    
