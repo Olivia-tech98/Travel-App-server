@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Country } = require('../models');
+const { Country, Review } = require('../models');
 const validateSession = require('../middleware/validate-session');
 
 router.post('/create', validateSession, (req,res)=> {
@@ -25,7 +25,9 @@ router.post('/create', validateSession, (req,res)=> {
 
 router.get("/getAll", validateSession, (req, res) => {
     
-    Country.findAll()
+    Country.findAll({
+        include: Review
+    })
     .then((country) => res.status(200).json(country))
     .catch((err)=> res.status(500)({error:err}));
 });
