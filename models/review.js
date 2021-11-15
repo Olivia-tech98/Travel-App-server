@@ -8,7 +8,7 @@ const Review = db.define("review", {
     },
     favorites: {
         type: DataTypes.BOOLEAN,
-        allowNull: false
+        allowNull: true
     },
 });
 
