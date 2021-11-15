@@ -41,15 +41,16 @@ router.put("/update/:countryId", validateSession, (req,res)=> {
     .catch(err=> res.status(500).json({error:err}))
 });
 
-router.delete("/delete/:countryId", validateSession, (req,res)=> {
-    let query
-    if(req.user.is_admin===true){
-        query = {where:{countryId: req.params.countryId}};
-    }else{
-        query = {where:{countryId: req.params.countryId, userId: req.user.id}};
-    }
+router.delete("/delete/:id", validateSession, (req,res)=> {
+    // let query
+    // if(req.user.is_admin===true){
+    //     query = {where:{id: req.params.id}};
+    // }else{
+    //     query = {where:{id: req.params.id}};
+    // }
+    let query= {where:{id: req.params.id}};
     Review.destroy(query)
-    .then(()=> res.status(200).json({message: "Review deleted!"}))
+    .then((review)=> res.status(200).json({message: "Review deleted!", review}))
     .catch((err)=> res.status(500).json({error:err}));
 })
 

@@ -39,7 +39,7 @@ router.get("/:id", validateSession, (req, res)=> {
     .catch((err)=> res.status(500).json({error:err}))
 });
 
-router.put("/update/country", validateSession, (req, res) => {
+router.put("/update/country/:id", validateSession, (req, res) => {
     const updateCountryEntry = {
         countryName: req.body.country.countryName, 
         population: req.body.country.population, 
@@ -49,7 +49,7 @@ router.put("/update/country", validateSession, (req, res) => {
         safteyRates: req.body.country.safteyRates
     }
 
-    const query = {where:{id: req.params.userId, userId: req.user.id}}
+    const query = {where:{id: req.params.id}}
 
     Country.update(updateCountryEntry, query)
     .then((country) => res.status(200).json(country))
