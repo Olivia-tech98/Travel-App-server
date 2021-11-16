@@ -34,7 +34,7 @@ router.put("/update/:countryId", validateSession, (req,res)=> {
         favorites: req.body.review.favorites
     }
 
-    const query = {where:{countryId: req.params.countryId, userId: req.user.id}};
+    const query = {where:{countryId: req.params.countryId}};
 
     Review.update(updateReviewEntry, query)
     .then((review)=> res.status(200).json(review))
