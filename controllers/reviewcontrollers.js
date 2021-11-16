@@ -28,13 +28,13 @@ router.get("/:id", validateSession, (req, res)=> {
     .catch(err=> res.status(500).json({error:err}))
 });
 
-router.put("/update/:countryId", validateSession, (req,res)=> {
+router.put("/update/:id", validateSession, (req,res)=> {
     const updateReviewEntry ={
         reviews: req.body.review.reviews,
-        favorites: req.body.review.favorites
+        // favorites: req.body.review.favorites
     }
 
-    const query = {where:{countryId: req.params.countryId}};
+    const query = {where:{id: req.params.id}};
 
     Review.update(updateReviewEntry, query)
     .then((review)=> res.status(200).json(review))
